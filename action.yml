@@ -1,0 +1,21 @@
+name: 'mdtmpl'
+description: 'A dead simple Markdown templating tool'
+author: tommorelly@gmail.com
+
+inputs:
+  template-file:
+    required: true
+    description: "path to your mdtmpl template file"
+    default: "README.md.tmpl"
+  output-file:
+    required: true
+    description: "file where to write the generated README file"
+    default: "README.md"
+
+runs:
+  using: 'docker'
+  image: "docker://falcosuessgott/mdtmpl:v0.2.2"
+  env:
+    MDTMPL_TEMPLATE_FILE: ${{ inputs.template-file }}
+    MDTMPL_FORCE: "true"
+    MDTMPL_OUTPUT_FILE: ${{ inputs.output-file }}
